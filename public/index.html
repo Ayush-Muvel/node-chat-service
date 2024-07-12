@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="chat">
+    <div id="header">Chat Application</div>
+    <div id="joinArea">
+      <input id="groupName" type="text" placeholder="Group Name">
+      <input id="userName" type="text" placeholder="User Name">
+      <button id="joinBtn">Join Group</button>
+    </div>
+    <ul id="messages"></ul>
+    <div id="inputArea">
+      <input id="message" type="text" placeholder="Type a message">
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    let currentUser = '';
+
+    document.getElementById('joinBtn').addEventListener('click', () => {
+      const groupName = document.getElementById('groupName').value;
+      const userName = document.getElementById('userName').value;
+      if (groupName && userName) {
+        currentUser = userName;
+        socket.emit('joinGroup', { groupName, userName });
+        document.getElementById('joinArea').style.display = 'none';
+        document.getElementById('inputArea').style.display = 'flex';
+      }
+    });
+
+    document.getElementById('sendBtn').addEventListener('click', sendMessage);
+    document.getElementById('message').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    function sendMessage() {
+      const message = document.getElementById('message').value;
+      const groupName = document.getElementById('groupName').value;
+      const userName = document.getElementById('userName').value;
+      if (message) {
+        socket.emit('sendMessage', { groupName, userName, message });
+        document.getElementById('message').value = '';
+      }
+    }
+
+    socket.on('message', (data) => {
+      const item = document.createElement('li');
+      item.textContent = `${data.user}: ${data.text}`;
+      item.className = data.user === currentUser ? 'sent' : 'received';
+      document.getElementById('messages').appendChild(item);
+      document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    });
+  </script>
+</body>
+</html>

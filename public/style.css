@@ -1,0 +1,121 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#chat {
+  width: 500px;
+  max-width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+#header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+#messages {
+  list-style-type: none;
+  padding: 20px;
+  margin: 0;
+  height: 300px;
+  overflow-y: scroll;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+#messages li {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+#messages li.sent {
+  background-color: #007bff;
+  color: #fff;
+  align-self: flex-end;
+  text-align: right;
+}
+
+#messages li.received {
+  background-color: #f1f1f1;
+  color: #000;
+  align-self: flex-start;
+  text-align: left;
+}
+
+#inputArea {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+  align-items: center;
+}
+
+#inputArea input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 1em;
+}
+
+#inputArea button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#inputArea button:hover {
+  background-color: #0056b3;
+}
+
+#joinArea {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#joinArea input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 80%;
+  font-size: 1em;
+}
+
+#joinArea button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#joinArea button:hover {
+  background-color: #218838;
+}
